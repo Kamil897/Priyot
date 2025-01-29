@@ -32,7 +32,19 @@
     @media (max-width: 480px) {
       font-size: 6vmin;
       margin-left: 10px;
-      text-shadow: 0 0 2px #fff;
+    }
+
+    
+    @media (max-width: 480px) {
+      font-size: 8vmin;
+      margin-left: 10px;
+      margin-bottom: 250px;
+    }
+
+    @media (max-width: 380px) {
+      font-size: 7vmin;
+      margin-left: 10px;
+      margin-bottom: 200px;
     }
   }
 

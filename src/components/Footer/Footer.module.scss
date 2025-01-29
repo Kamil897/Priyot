@@ -164,6 +164,11 @@
       left: -160px;
       top:  0px;
     }
+
+    @media (max-width: 825px) {
+      left: -130px;
+      top:  0px;
+    }
   }
 
   .donate h2 {

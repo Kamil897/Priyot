@@ -167,8 +167,7 @@ const HomeHero = () => {
         </div>
       </section>
 
-      <section id="map">
-        <h2>Карта приютов</h2>
+      <section id="sectionmap">
         <div id="map" style={{ height: "400px" }}></div>
       </section>
     </>

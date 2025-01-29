@@ -64,6 +64,13 @@
       padding: 24px;
     }
 
+    
+    @media (max-width: 420px) {
+      height: 350px;
+      max-width: 400px;
+      padding: 20px;
+    }
+
     @media (max-width: 400px) {
       max-width: 380px;
       padding: 20px;
@@ -76,8 +83,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 
-        @media (max-width: 400px) {
+        @media (max-width: 490px) {
           font-size: 32px;
+        }
+
+        @media (max-width: 420px) {
+          font-size: 29px;
         }
     }
   
@@ -89,8 +100,8 @@
       h2 {
         font-size: 32px;
 
-        @media (max-width: 400px) {
-          font-size: 28px;
+        @media (max-width: 490px) {
+          font-size: 26px;
         }
       }
   
@@ -98,8 +109,8 @@
         margin-top: 1rem;
         font-size: 28px;
 
-        @media (max-width: 400px) {
-          font-size: 22px;
+        @media (max-width: 490px) {
+          font-size: 20px;
         }
       }
     }

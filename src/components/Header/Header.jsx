@@ -57,7 +57,7 @@ const Header = () => {
               </Link>
             </div>
 
-            <div className={`${s.links} ${active ? s.active : ''}`}>
+            <div className={`${s.links} ${active ? s.active : ''}`} onClick={CloseMenu}>
               <Link to='/Shop'>Магазин игрушек</Link>
 
               <Link onClick={CloseMenu} className={s.dropdown} to={'/Animals'}>

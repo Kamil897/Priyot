@@ -191,9 +191,9 @@ body {
     padding: 52px;
   }
 
-  @media (max-width: 400px) {
-    width: 320px;
-    padding: 22px;
+  @media (max-width: 420px) {
+    width: 340px;
+    padding: 25px;
   }
 
   .title {
@@ -205,6 +205,7 @@ body {
     @media (max-width: 1100px) {
       font-size: 30px;
     }
+
   }
   
   .description {
@@ -217,6 +218,16 @@ body {
     @media (max-width: 1100px) {
       font-size: 26px;
       line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      text-align: center;
+      font-size: 20px;
+    }
+
+      
+    @media (max-width: 420px) {
+      font-size: 19px;
     }
   }
   .button {
@@ -242,18 +253,18 @@ body {
   }
 }  
 
-.news_card{
+.news_card  {
   font-size: 25px;
   // color: #910091;
 }
 
-.news_card_text{
+.news_card_text {
   font-family:"RobotoCondensed",serif;
   font-size: 20px;
   // color: #910091;
 }
 
-.card{
+.card {
     width: 70%;
     height: 70%;
     border-radius: 8px;
@@ -454,10 +465,6 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 30px;
-
-    @media (max-width: 400px) {
-      font-size: 35px;
-    }
   }
   
   .content_our{
@@ -467,215 +474,34 @@ body {
 
     .item {
         flex: 1;
-        margin: 100px;
+        margin-top: 10px;
         text-align: center; 
+
+        @media (max-width: 425px) {
+          margin: 60px;
+        }
         
         .item_text_desc {
             font-weight: 700;
             font-size: 30px;
             margin-bottom: 10px;
-
-            @media (max-width: 400px) {
-              font-size: 22px;
+            
+            @media (max-width: 425px) {
+              width: 210px;
+              font-size: 26px;
             }
         }
         
         .item_text_decor {
             font-weight: 500;
             font-size: 25px;
+            text-align: center;
 
-            @media (max-width: 400px) {
-              width: 200px;
+            @media (max-width: 425px) {
+              width: 230px;
               font-size: 20px;
             }
         }
     }
-  }
-}
-@media (max-width: 1024px) {
-  .main {
-    padding: 20px;
-  }
-
-  .title {
-    font-size: max(50px, 12vw);
-  }
-
-  .container_main h1 {
-    font-size: 32px;
-    letter-spacing: 1.5px;
-  }
-
-  .aboutus {
-    width: 85%;
-    padding: 40px;
-  }
-
-  .aboutus .title {
-    font-size: 28px;
-  }
-
-  .aboutus .description {
-    font-size: 18px;
-    line-height: 1.4;
-  }
-
-  .news {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .card {
-    max-width: 80%;
-    margin: 10px auto;
-  }
-
-  .why_us .why_us_title,
-  .our_users .our_users_title {
-    font-size: 28px;
-    padding: 30px;
-  }
-
-  .why_us .item,
-  .our_users .item {
-    margin: 20px auto;
-    width: 85%;
-  }
-
-  .why_us .item_title,
-  .our_users .item_text_desc {
-    font-size: 22px;
-  }
-
-  .our_users .item_text_decor {
-    font-size: 18px;
-  }
-}
-
-/* --- Адаптив для телефонов (ширина до 768px) --- */
-@media (max-width: 768px) {
-  .title {
-    font-size: max(36px, 10vw);
-  }
-
-  .container_main h1 {
-    font-size: 28px;
-  }
-
-  .aboutus {
-    width: 90%;
-    padding: 30px;
-  }
-
-  .aboutus .title {
-    font-size: 24px;
-  }
-
-  .aboutus .description {
-    font-size: 16px;
-  }
-
-  .news {
-    padding: 15px;
-  }
-
-  .card {
-    width: 90%;
-    margin: 15px auto;
-  }
-
-  .why_us {
-    padding: 15px;
-  }
-
-  .why_us .why_us_title,
-  .our_users .our_users_title {
-    font-size: 24px;
-  }
-
-  .why_us .item,
-  .our_users .item {
-    width: 100%;
-  }
-
-  .why_us .item_title,
-  .our_users .item_text_desc {
-    font-size: 18px;
-  }
-
-  .our_users .item_text_decor {
-    font-size: 16px;
-  }
-
-  .home_wrapper {
-    max-width: 90%;
-  }
-
-  .home_title {
-    font-size: 28px;
-  }
-
-  .home_text {
-    font-size: 16px;
-  }
-}
-
-/* --- Адаптив для маленьких телефонов (ширина до 480px) --- */
-@media (max-width: 480px) {
-  .title {
-    font-size: max(28px, 8vw);
-  }
-
-  .container_main h1 {
-    font-size: 24px;
-  }
-
-  .aboutus {
-    width: 95%;
-    padding: 20px;
-  }
-
-  .aboutus .title {
-    font-size: 20px;
-  }
-
-  .aboutus .description {
-    font-size: 14px;
-  }
-
-  .news {
-    padding: 10px;
-  }
-
-  .card {
-    width: 100%;
-    margin: 10px auto;
-  }
-
-  .why_us .why_us_title,
-  .our_users .our_users_title {
-    font-size: 20px;
-  }
-
-  .why_us .item_title,
-  .our_users .item_text_desc {
-    font-size: 16px;
-  }
-
-  .our_users .item_text_decor {
-    font-size: 14px;
-  }
-
-  .home_title {
-    font-size: 24px;
-  }
-
-  .home_text {
-    font-size: 14px;
-  }
-
-  .why_us .content,
-  .our_users .content_our {
-    flex-direction: column;
   }
 }
