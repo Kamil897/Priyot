@@ -1,92 +1,70 @@
-import React from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Home from './pages/Home';
-import NotFoundPage from './components/NotFoundPage/NotFoundPage';
-import AnimalsHero from './components/AnimalsHero/AnimalsHero';
 import PreLoader from './components/PreLoader/PreLoader';
-import ShelterHero from './components/ShelterHero/ShelterHero';
-import Society from './components/Society/Society';
-import Tech from './components/Tech/Tech';
-import Culture from './components/Culture/Culture';
-import Register from './pages/Register';
-import Log from './pages/Log';
-import Personal from './pages/Personal';
-import EditProfile from './components/EditProfile/Edit';
-import TicTacToe from './components/TicTacToe/TicTacToe.jsx';
-import Snake from './components/Snake/Snake.jsx';
-import FlappyBird from './components/FlappyBird/FlappyBird.jsx';
-import Games from './components/Games/Games.jsx';
-import Tir from './components/Tir/Tir.jsx';
-import Magaz from './pages/magaz.jsx';
 import { Analytics } from "@vercel/analytics/react";
-// import Platworm from './components/Platworm/Platworm.jsx';
+
+const Home = lazy(() => import('./pages/Home'));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage/NotFoundPage'));
+const AnimalsHero = lazy(() => import('./components/AnimalsHero/AnimalsHero'));
+const ShelterHero = lazy(() => import('./components/ShelterHero/ShelterHero'));
+const Society = lazy(() => import('./components/Society/Society'));
+const Tech = lazy(() => import('./components/Tech/Tech'));
+const Culture = lazy(() => import('./components/Culture/Culture'));
+const Register = lazy(() => import('./pages/Register'));
+const Log = lazy(() => import('./pages/Log'));
+const Personal = lazy(() => import('./pages/Personal'));
+const EditProfile = lazy(() => import('./components/EditProfile/Edit'));
+const TicTacToe = lazy(() => import('./components/TicTacToe/TicTacToe'));
+const Snake = lazy(() => import('./components/Snake/Snake'));
+const FlappyBird = lazy(() => import('./components/FlappyBird/FlappyBird'));
+const Games = lazy(() => import('./components/Games/Games'));
+const Tir = lazy(() => import('./components/Tir/Tir'));
+const Magaz = lazy(() => import('./pages/magaz'));
 
 const App = () => {
   const location = useLocation();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
-
     return () => clearTimeout(timer);
   }, []);
 
-
-  const isNotFoundPage = location.pathname !== '/' &&
-                         location.pathname !== '/Shelter' &&
-                         location.pathname !== '/Register' &&
-                         location.pathname !== '/Login' &&
-                         location.pathname !== '/MainPage' &&
-                         location.pathname !== '/Animals' &&
-                         location.pathname !== '/Society' &&
-                         location.pathname !== '/Tech' &&
-                         location.pathname !== '/Culture' &&
-                         location.pathname !== '/TicTacToe' &&
-                         location.pathname !== '/Snake' &&
-                         location.pathname !== '/flappybird' &&
-                         location.pathname !== '/Games' &&
-                         location.pathname !== '/Tetris' &&
-                         location.pathname !== '/Tir' &&
-                        //  location.pathname !== '/Plarworm' &&
-                         location.pathname !== '/Shop' ;
+  const isNotFoundPage = !["/", "/Shelter", "/Register", "/Login", "/MainPage", "/Animals", "/Society", "/Tech", "/Culture", "/TicTacToe", "/Snake", "/flappybird", "/Games", "/Tetris", "/Tir", "/Shop"].includes(location.pathname);
 
   return (
     <>
       {loading && <PreLoader />}
-
       {!isNotFoundPage && <Header />}
-
-      <Routes>
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/Shelter" element={<ShelterHero />} />
-        <Route path="/Animals" element={<AnimalsHero />} />
-        <Route path="/Society" element={<Society />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Log />} />
-        <Route path="/MainPage" element={<Personal />} />
-        <Route path="/edit" element={<EditProfile />} />
-        <Route path="/Tech" element={<Tech />} />
-        <Route path="/Culture" element={<Culture />} />
-        <Route path="/TicTacToe" element={<TicTacToe />} />
-        <Route path="/Snake" element={<Snake />} />
-        <Route path="/flappybird" element={<FlappyBird />} />
-        <Route path="/Games" element={<Games />} />
-        <Route path="/Tir" element={<Tir />} />
-        {/* <Route path="/Platworm" element={<Platworm />} /> */}
-        <Route path="/Shop" element={<Magaz />} />
-      </Routes>
-
+      <Suspense fallback={<PreLoader />}>
+        <Routes>
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/Shelter" element={<ShelterHero />} />
+          <Route path="/Animals" element={<AnimalsHero />} />
+          <Route path="/Society" element={<Society />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Log />} />
+          <Route path="/MainPage" element={<Personal />} />
+          <Route path="/edit" element={<EditProfile />} />
+          <Route path="/Tech" element={<Tech />} />
+          <Route path="/Culture" element={<Culture />} />
+          <Route path="/TicTacToe" element={<TicTacToe />} />
+          <Route path="/Snake" element={<Snake />} />
+          <Route path="/flappybird" element={<FlappyBird />} />
+          <Route path="/Games" element={<Games />} />
+          <Route path="/Tir" element={<Tir />} />
+          <Route path="/Shop" element={<Magaz />} />
+        </Routes>
+      </Suspense>
       {!isNotFoundPage && <Footer />}
       <Analytics />
-      </>
+    </>
   );
 };
 
