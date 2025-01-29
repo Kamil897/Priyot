@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom"; 
+import { useLocation } from "react-router-dom";
 import "./MusicPlayer.css";
 
 const tracks = [
@@ -29,84 +29,69 @@ const tracks = [
   }
 ];
 
+const formatTime = (time) => {
+  if (isNaN(time)) return "00:00";
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+};
+
 const MusicPlayer = ({ isFixed = false }) => {
-  const location = useLocation(); 
+  const location = useLocation();
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [barWidth, setBarWidth] = useState("0%");
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState("00:00");
-
   const audioRef = useRef(new Audio(tracks[currentTrackIndex].source));
 
   useEffect(() => {
-    // Обновляем источник трека
-    audioRef.current.src = tracks[currentTrackIndex].source;
-    audioRef.current.load();
+    const audio = audioRef.current;
+    audio.src = tracks[currentTrackIndex].source;
+    audio.preload = "auto";
+    audio.load();
 
-    if (isPlaying) {
-      audioRef.current.play();
-    }
-
+    const updateMetadata = () => setDuration(formatTime(audio.duration));
     const updateProgress = () => {
-      const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-      setBarWidth(`${progress}%`);
-
-      const curMinutes = Math.floor(audioRef.current.currentTime / 60);
-      const curSeconds = Math.floor(audioRef.current.currentTime % 60);
-      const durMinutes = Math.floor(audioRef.current.duration / 60);
-      const durSeconds = Math.floor(audioRef.current.duration % 60);
-
-      setCurrentTime(`${curMinutes < 10 ? "0" : ""}${curMinutes}:${curSeconds < 10 ? "0" : ""}${curSeconds}`);
-      setDuration(`${durMinutes < 10 ? "0" : ""}${durMinutes}:${durSeconds < 10 ? "0" : ""}${durSeconds}`);
+      setBarWidth(`${(audio.currentTime / audio.duration) * 100}%`);
+      setCurrentTime(formatTime(audio.currentTime));
     };
-
     const handleTrackEnd = () => {
       nextTrack();
       setIsPlaying(true);
     };
 
-    audioRef.current.addEventListener("timeupdate", updateProgress);
-    audioRef.current.addEventListener("ended", handleTrackEnd);
+    audio.addEventListener("loadedmetadata", updateMetadata);
+    audio.addEventListener("timeupdate", updateProgress);
+    audio.addEventListener("ended", handleTrackEnd);
 
     return () => {
-      audioRef.current.removeEventListener("timeupdate", updateProgress);
-      audioRef.current.removeEventListener("ended", handleTrackEnd);
+      audio.removeEventListener("loadedmetadata", updateMetadata);
+      audio.removeEventListener("timeupdate", updateProgress);
+      audio.removeEventListener("ended", handleTrackEnd);
     };
-  }, [currentTrackIndex, isPlaying]);
+  }, [currentTrackIndex]);
 
   const playPause = () => {
-    if (audioRef.current.paused) {
-      audioRef.current.play();
-    } else {
+    if (isPlaying) {
       audioRef.current.pause();
+    } else {
+      audioRef.current.play();
     }
-    setIsPlaying(!audioRef.current.paused);
+    setIsPlaying(!isPlaying);
   };
 
-  const nextTrack = () => {
-    setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % tracks.length);
-    setBarWidth("0%");
-    setCurrentTime("00:00");
-  };
-
-  const prevTrack = () => {
-    setCurrentTrackIndex((prevIndex) => (prevIndex - 1 + tracks.length) % tracks.length);
-    setBarWidth("0%");
-    setCurrentTime("00:00");
-  };
+  const nextTrack = () => setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
+  const prevTrack = () => setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
 
   return (
     <div className={`player-music ${isFixed ? "player--fixed" : ""}`}>
       <div className="player-cover">
         <img src={tracks[currentTrackIndex].cover} alt={tracks[currentTrackIndex].name} className="player-cover__img" />
       </div>
-
       <div className="album-info">
         {isFixed ? (
-          <p className="album-info__playing-now">
-            Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}
-          </p>
+          <p className="album-info__playing-now">Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}</p>
         ) : (
           <>
             <h2 className="album-info__name">{tracks[currentTrackIndex].name}</h2>
@@ -114,14 +99,12 @@ const MusicPlayer = ({ isFixed = false }) => {
           </>
         )}
       </div>
-
       <div className={`progress ${isFixed ? "progress_none" : ""}`}>
         <div
           className="progress__bar"
           onClick={(e) => {
             const rect = e.target.getBoundingClientRect();
-            const offsetX = e.clientX - rect.left;
-            const percentage = offsetX / rect.width;
+            const percentage = (e.clientX - rect.left) / rect.width;
             audioRef.current.currentTime = percentage * audioRef.current.duration;
           }}
         >
@@ -131,17 +114,10 @@ const MusicPlayer = ({ isFixed = false }) => {
           <span>{currentTime}</span> / <span>{duration}</span>
         </div>
       </div>
-
       <div className="player-controls">
-        <button className="player-controls__item" onClick={prevTrack}>
-          <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
-        </button>
-        <button className="player-controls__item -xl" onClick={playPause}>
-          {isPlaying ? "⏸" : "▶"}
-        </button>
-        <button className="player-controls__item" onClick={nextTrack}>
-          <img src="./Shape.png" alt="Next" className="player-controls__icon" />
-        </button>
+        <button className="player-controls__item" onClick={prevTrack}>⏮</button>
+        <button className="player-controls__item -xl" onClick={playPause}>{isPlaying ? "⏸" : "▶"}</button>
+        <button className="player-controls__item" onClick={nextTrack}>⏭</button>
       </div>
     </div>
   );
