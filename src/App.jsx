@@ -22,6 +22,7 @@ import FlappyBird from './components/FlappyBird/FlappyBird.jsx';
 import Games from './components/Games/Games.jsx';
 import Tir from './components/Tir/Tir.jsx';
 import Magaz from './pages/magaz.jsx';
+import { Analytics } from "@vercel/analytics/react";
 // import Platworm from './components/Platworm/Platworm.jsx';
 
 const App = () => {
@@ -61,30 +62,31 @@ const App = () => {
       {loading && <PreLoader />}
 
       {!isNotFoundPage && <Header />}
-      
-        <Routes>
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/Shelter" element={<ShelterHero />} />
-          <Route path="/Animals" element={<AnimalsHero />} />
-          <Route path="/Society" element={<Society />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Log />} />
-          <Route path="/MainPage" element={<Personal />} />
-          <Route path="/edit" element={<EditProfile />} />
-          <Route path="/Tech" element={<Tech />} />
-          <Route path="/Culture" element={<Culture />} />
-          <Route path="/TicTacToe" element={<TicTacToe />} />
-          <Route path="/Snake" element={<Snake />} />
-          <Route path="/flappybird" element={<FlappyBird />} />
-          <Route path="/Games" element={<Games />} />
-          <Route path="/Tir" element={<Tir />} />
-          {/* <Route path="/Platworm" element={<Platworm />} /> */}
-          <Route path="/Shop" element={<Magaz />} />
-        </Routes>
 
-      {!isNotFoundPage && <Footer />} 
-    </>
+      <Routes>
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Shelter" element={<ShelterHero />} />
+        <Route path="/Animals" element={<AnimalsHero />} />
+        <Route path="/Society" element={<Society />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Log />} />
+        <Route path="/MainPage" element={<Personal />} />
+        <Route path="/edit" element={<EditProfile />} />
+        <Route path="/Tech" element={<Tech />} />
+        <Route path="/Culture" element={<Culture />} />
+        <Route path="/TicTacToe" element={<TicTacToe />} />
+        <Route path="/Snake" element={<Snake />} />
+        <Route path="/flappybird" element={<FlappyBird />} />
+        <Route path="/Games" element={<Games />} />
+        <Route path="/Tir" element={<Tir />} />
+        {/* <Route path="/Platworm" element={<Platworm />} /> */}
+        <Route path="/Shop" element={<Magaz />} />
+      </Routes>
+
+      {!isNotFoundPage && <Footer />}
+      <Analytics />
+      </>
   );
 };
 
