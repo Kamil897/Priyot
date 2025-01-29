@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom"; // Импортируем useLocation
+import { useLocation } from "react-router-dom"; 
 import "./MusicPlayer.css";
 
 const tracks = [
@@ -26,147 +26,45 @@ const tracks = [
     source: "/music/She_Said_Shes_From_The_Islands.mp3",
     url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
     favorited: false,
-  },
-  {
-    name: "Голая",
-    artist: "Градусы",
-    cover: "/images/Gradys.jpg",
-    source: "/music/Golaya.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Promise to Myself",
-    artist: "Matt Heath",
-    cover: "/images/Myself.jpg",
-    source: "/music/Matt_Heath.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Just The Two Of Us ",
-    artist: "Grover Washington, Jr.",
-    cover: "/images/Grover_Washington.jpg",
-    source: "/music/Grover_Washington.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Headlock (Immis Radio Mix)",
-    artist: "Imogen Heap",
-    cover: "/images/Imogen_Heap.jpg",
-    source: "/music/Imogen-Heap.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Je Reve",
-    artist: "La Meprise",
-    cover: "/images/Je_Reve.jpg",
-    source: "/music/Je_Reve.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Die With A Smile",
-    artist: "Lady Gaga & Bruno Mars",
-    cover: "/images/LadyGaga_BrunoMars_.jpg",
-    source: "/music/Lady_Gaga_Bruno_Mars.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Одно и тоже",
-    artist: "iowa",
-    cover: "/images/odno.jpg",
-    source: "/music/odno_i_toje.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "90",
-    artist: "Pompeya",
-    cover: "/images/Hotel.jpg",
-    source: "/music/Pompeya.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Like Him (feat. Lola Young)",
-    artist: "Tyler, The Creator CHROMAKOPIA",
-    cover: "/images/Tyler.jpg",
-    source: "/music/Tyler.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Fly me to the moon Squid game",
-    artist: "Joo Won",
-    cover: "/images/Squid.jpg",
-    source: "/music/Squid_game.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
+  }
 ];
 
-
 const MusicPlayer = ({ isFixed = false }) => {
-  const location = useLocation(); // Получаем текущий маршрут
+  const location = useLocation(); 
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [barWidth, setBarWidth] = useState("0%");
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState("00:00");
+
   const audioRef = useRef(new Audio(tracks[currentTrackIndex].source));
 
-  const currentTrack = tracks[currentTrackIndex];
-
-  const playPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const nextTrack = () => {
-    setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % tracks.length);
-  };
-
-  const prevTrack = () => {
-    setCurrentTrackIndex((prevIndex) => (prevIndex - 1 + tracks.length) % tracks.length);
-  };
-
-  const updateProgress = () => {
-    const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-    setBarWidth(`${progress}%`);
-
-    const curMinutes = Math.floor(audioRef.current.currentTime / 60);
-    const curSeconds = Math.floor(audioRef.current.currentTime % 60);
-    const durMinutes = Math.floor(audioRef.current.duration / 60);
-    const durSeconds = Math.floor(audioRef.current.duration % 60);
-
-    setCurrentTime(
-      `${curMinutes < 10 ? "0" : ""}${curMinutes}:${curSeconds < 10 ? "0" : ""}${curSeconds}`
-    );
-    setDuration(
-      `${durMinutes < 10 ? "0" : ""}${durMinutes}:${durSeconds < 10 ? "0" : ""}${durSeconds}`
-    );
-  };
-
-  const handleTrackEnd = () => {
-    nextTrack();
-    setIsPlaying(true);
-  };
-
   useEffect(() => {
-    audioRef.current.pause();
-    audioRef.current = new Audio(tracks[currentTrackIndex].source);
+    // Обновляем источник трека
+    audioRef.current.src = tracks[currentTrackIndex].source;
+    audioRef.current.load();
 
     if (isPlaying) {
       audioRef.current.play();
     }
+
+    const updateProgress = () => {
+      const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+      setBarWidth(`${progress}%`);
+
+      const curMinutes = Math.floor(audioRef.current.currentTime / 60);
+      const curSeconds = Math.floor(audioRef.current.currentTime % 60);
+      const durMinutes = Math.floor(audioRef.current.duration / 60);
+      const durSeconds = Math.floor(audioRef.current.duration % 60);
+
+      setCurrentTime(`${curMinutes < 10 ? "0" : ""}${curMinutes}:${curSeconds < 10 ? "0" : ""}${curSeconds}`);
+      setDuration(`${durMinutes < 10 ? "0" : ""}${durMinutes}:${durSeconds < 10 ? "0" : ""}${durSeconds}`);
+    };
+
+    const handleTrackEnd = () => {
+      nextTrack();
+      setIsPlaying(true);
+    };
 
     audioRef.current.addEventListener("timeupdate", updateProgress);
     audioRef.current.addEventListener("ended", handleTrackEnd);
@@ -177,21 +75,42 @@ const MusicPlayer = ({ isFixed = false }) => {
     };
   }, [currentTrackIndex, isPlaying]);
 
+  const playPause = () => {
+    if (audioRef.current.paused) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+    setIsPlaying(!audioRef.current.paused);
+  };
+
+  const nextTrack = () => {
+    setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % tracks.length);
+    setBarWidth("0%");
+    setCurrentTime("00:00");
+  };
+
+  const prevTrack = () => {
+    setCurrentTrackIndex((prevIndex) => (prevIndex - 1 + tracks.length) % tracks.length);
+    setBarWidth("0%");
+    setCurrentTime("00:00");
+  };
+
   return (
     <div className={`player-music ${isFixed ? "player--fixed" : ""}`}>
       <div className="player-cover">
-        <img src={currentTrack.cover} alt={currentTrack.name} className="player-cover__img" />
+        <img src={tracks[currentTrackIndex].cover} alt={tracks[currentTrackIndex].name} className="player-cover__img" />
       </div>
 
       <div className="album-info">
         {isFixed ? (
           <p className="album-info__playing-now">
-            Сейчас играет: {currentTrack.name} - {currentTrack.artist}
+            Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}
           </p>
         ) : (
           <>
-            <h2 className="album-info__name">{currentTrack.name}</h2>
-            <p className="album-info__track">{currentTrack.artist}</p>
+            <h2 className="album-info__name">{tracks[currentTrackIndex].name}</h2>
+            <p className="album-info__track">{tracks[currentTrackIndex].artist}</p>
           </>
         )}
       </div>
@@ -224,7 +143,6 @@ const MusicPlayer = ({ isFixed = false }) => {
           <img src="./Shape.png" alt="Next" className="player-controls__icon" />
         </button>
       </div>
-
     </div>
   );
 };
