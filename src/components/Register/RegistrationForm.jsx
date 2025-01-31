@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
 import s from './Registration.module.scss';
+
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+initializeApp(firebaseConfig);
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -15,6 +28,8 @@ const Registration = () => {
     });
 
     const navigate = useNavigate();
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
 
     const handleChange = (e) => {
         setFormData({
@@ -25,184 +40,70 @@ const Registration = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-
         const existingUser = localStorage.getItem(formData.username);
         if (existingUser) {
             alert('Пользователь с таким именем уже существует');
             return;
         }
-        
-        let calculatedAge = null;
 
+        let calculatedAge = null;
         if (formData.birth) {
             const birthDateObj = new Date(formData.birth);
             const today = new Date();
             calculatedAge = today.getFullYear() - birthDateObj.getFullYear();
             const monthDiff = today.getMonth() - birthDateObj.getMonth();
-
             if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
                 calculatedAge--;
             }
         }
 
-        const userData = {
-            ...formData,
-            age: calculatedAge,
-        };
-
+        const userData = { ...formData, age: calculatedAge };
         localStorage.setItem(formData.username, JSON.stringify(userData));
 
         alert('Регистрация прошла успешно!');
         navigate('/login');
     };
 
+    const handleGoogleSignIn = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            localStorage.setItem(user.uid, JSON.stringify({
+                username: user.displayName,
+                email: user.email,
+                avatar: user.photoURL,
+            }));
+            alert('Регистрация через Google успешна!');
+            navigate('/login');
+        } catch (error) {
+            console.error('Ошибка входа через Google:', error);
+        }
+    };
+
     return (
         <div className="container__main">
             <div className={s.exit}>
-                <Link to={"/"}>
-                 <button className={s.exit_button}>Назад</button>
+                <Link to="/">
+                    <button className={s.exit_button}>Назад</button>
                 </Link>
             </div>
-
             <div className={s.div}>
                 <h2 className={s.h2}>Регистрация</h2>
                 <form onSubmit={handleRegister}>
-                    <div className={s.img}>
-                        <label htmlFor="avatar" className={s.imageUpload}>
-                            <img
-                                src={formData.avatar || 'profileimg.png'}
-                                alt="Аватар"
-                                className={s.uploadImage}
-                            />
-                        </label>
-                        <input
-                            type="file"
-                            id="avatar"
-                            name="avatar"
-                            accept="image/*"
-                            className={s.hiddenInput}
-                            onChange={(e) => {
-                                const file = e.target.files[0];
-                                if (file) {
-                                    const reader = new FileReader();
-                                    reader.onload = () => {
-                                        setFormData({
-                                            ...formData,
-                                            avatar: reader.result,
-                                        });
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
-                            }}
-                        />
-                    </div>
                     <div className={s.form}>
-                        <div>
-                            <label htmlFor="firstName">
-                                <p>Имя</p>
-                                <input
-                                    className={s.input}
-                                    type="text"
-                                    id="firstName"
-                                    name="firstName"
-                                    value={formData.firstName}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label htmlFor="lastName">
-                                <p>Фамилия</p>
-                                <input
-                                    className={s.input}
-                                    type="text"
-                                    id="lastName"
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label htmlFor="hobby">
-                                <p>Хобби</p>
-                                <input
-                                    className={s.input}
-                                    type="text"
-                                    id="hobby"
-                                    name="hobby"
-                                    value={formData.hobby}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label htmlFor="education">
-                                <p>Образование/Работа</p>
-                                <input
-                                    className={s.input}
-                                    type="text"
-                                    id="education"
-                                    name="education"
-                                    value={formData.education}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label htmlFor="birth">
-                                <p>Дата рождения: (Не обязательно)</p>
-                                <input
-                                    className={s.input}
-                                    type="date"
-                                    id="birth"
-                                    name="birth"
-                                    value={formData.birth}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label htmlFor="username">
-                                <p>Имя пользователя</p>
-                                <input
-                                    className={s.input}
-                                    type="text"
-                                    id="username"
-                                    name="username"
-                                    value={formData.username}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label htmlFor="password">
-                                <p>Пароль</p>
-                                <input
-                                    className={s.input}
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                        </div>
+                        <label>
+                            <p>Имя пользователя</p>
+                            <input className={s.input} type="text" name="username" value={formData.username} onChange={handleChange} required />
+                        </label>
+                        <label>
+                            <p>Пароль</p>
+                            <input className={s.input} type="password" name="password" value={formData.password} onChange={handleChange} required />
+                        </label>
                     </div>
-                    <Link className={s.link} to={'/login'}>
-                        Уже есть аккаунт? Войти
-                    </Link>
-                    <button className={s.btn} type="submit">
-                        Зарегистрироваться
-                    </button>
+                    <button className={s.btn} type="submit">Зарегистрироваться</button>
                 </form>
+                <button className={s.googleBtn} onClick={handleGoogleSignIn}>Зарегистрироваться через Google</button>
+                <Link className={s.link} to={'/login'}>Уже есть аккаунт? Войти</Link>
             </div>
         </div>
     );
