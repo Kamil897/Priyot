@@ -1,0 +1,141 @@
+.newsPage {
+  padding: 20px;
+
+  .title {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .newsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Сетка с 3 колонками */
+    gap: 30px;
+  }
+
+  .newsItem {
+    position: relative;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    &::after {
+      content: '';
+      position: absolute;
+      background-image: url(/public/food.png);
+      background-repeat: no-repeat;
+      bottom: -9px;
+      right: 17px;
+      width: 110px;
+      height: 70px;
+    }
+
+    .newsTitle {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .newsContent {
+      padding-left: 8px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+  }
+
+  /* --- Адаптив для планшетов (до 1024px) --- */
+  @media (max-width: 1024px) {
+    .title {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    .newsList {
+      grid-template-columns: repeat(2, 1fr); /* Сетка с 2 колонками */
+      gap: 20px;
+    }
+
+    .newsItem {
+      padding: 15px;
+      border-radius: 8px;
+
+      &::after {
+        width: 90px;
+        height: 60px;
+        bottom: -7px;
+        right: 12px;
+      }
+
+      .newsTitle {
+        font-size: 20px;
+      }
+
+      .newsContent {
+        font-size: 18px;
+      }
+    }
+  }
+
+  /* --- Адаптив для телефонов (до 768px) --- */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .newsList {
+      grid-template-columns: 1fr; /* Сетка с 1 колонкой */
+      gap: 15px;
+    }
+
+    .newsItem {
+      padding: 10px;
+
+      &::after {
+        width: 70px;
+        height: 50px;
+        bottom: -5px;
+        right: 10px;
+      }
+
+      .newsTitle {
+        font-size: 18px;
+      }
+
+      .newsContent {
+        font-size: 16px;
+      }
+    }
+  }
+
+  /* --- Адаптив для маленьких телефонов (до 480px) --- */
+  @media (max-width: 480px) {
+    .title {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .newsItem {
+      padding: 8px;
+
+      &::after {
+        width: 60px;
+        height: 40px;
+        bottom: -4px;
+        right: 8px;
+      }
+
+      .newsTitle {
+        font-size: 16px;
+      }
+
+      .newsContent {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+    }
+  }
+}

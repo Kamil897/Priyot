@@ -1,0 +1,271 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  padding: 50px;
+  gap: 30px;
+  overflow: hidden;
+}
+
+.profileSection {
+  flex: 0 0 350px;
+  padding: 30px;
+  background: linear-gradient(145deg, #c2c2c2, #f0f0f0); /* Двухцветный эффект для объемности */
+  border-radius: 30px;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.2), -10px -10px 25px rgba(255, 255, 255, 0.5); /* Неоморфизм */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.3), -12px -12px 30px rgba(255, 255, 255, 0.6);
+  }
+}
+
+.profile {
+  position: relative;
+  margin-bottom: 25px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ffafbd, #ffc3a0); /* Светящийся эффект за аватаркой */
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(20px);
+  }
+}
+
+.pfp, .defaultPfp {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff6a88; /* Акцентная рамка */
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    transform: rotate(-5deg) scale(1.1); /* Лёгкий наклон и увеличение */
+    border-color: #ff3f68;
+  }
+}
+
+.username {
+  font-size: 28px;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: #ff6a88; /* Линия под именем */
+  }
+}
+
+.info {
+  margin: 0 auto;
+  max-width: 300px;
+  text-align: left;
+
+  p {
+    font-size: 20px;
+    margin-bottom: 15px;
+    line-height: 1.7;
+    position: relative;
+
+    &:before {
+      content: "⚡";
+      position: absolute;
+      left: -25px;
+      color: #ff375f;
+      font-size: 19px;
+    }
+  }
+
+  b {
+    font-size: 18px;
+    color: #000000;
+    font-weight: bold;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  background: linear-gradient(to right, #ff6a88, #ff8e92); /* Яркий градиент */
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 106, 136, 0.3);
+
+  &:hover {
+    transform: translateY(-5px) scale(1.05); /* Поднятие и увеличение */
+    box-shadow: 0 8px 20px rgba(255, 106, 136, 0.4);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 8px rgba(255, 106, 136, 0.2);
+  }
+}
+
+.other {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 125px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  background-image: url(/public/back_cats.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 30px;
+  position: relative;
+  transition-duration: 0.5s;
+
+
+  &:hover {
+    box-shadow: inset 12px 12px 24px rgba(0, 0, 0, 0.15), inset -12px -12px 24px rgba(255, 255, 255, 0.7);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(255, 106, 136, 0.2), transparent);
+    z-index: -1;
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .profileSection {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .profile {
+    margin-bottom: 20px;
+  }
+
+  .pfp, .defaultPfp {
+    width: 120px;
+    height: 120px;
+  }
+
+  .username {
+    font-size: 24px;
+  }
+
+  .info p {
+    font-size: 18px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .other {
+    padding: 40px 20px;
+    background-size: cover;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profileSection {
+    padding: 15px;
+  }
+
+  .pfp, .defaultPfp {
+    width: 100px;
+    height: 100px;
+  }
+
+  .username {
+    font-size: 20px;
+  }
+
+  .info p {
+    font-size: 16px;
+  }
+
+  .other {
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .profileSection {
+    padding: 10px;
+  }
+
+  .pfp, .defaultPfp {
+    width: 80px;
+    height: 80px;
+  }
+
+  .username {
+    font-size: 18px;
+  }
+
+  .info p {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .other {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 80px auto;
+  }
+}

@@ -1,0 +1,115 @@
+.teacher__card {
+  display: flex;
+  max-width: 720px;
+  width: 100%;
+  gap: 10px;
+  background-color: #2f2f2f;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+  }
+}
+
+.teacher__img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+  transition: filter 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.teacher__card__text {
+  padding: 30px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  h3 {
+    font-style: bold;
+    font-size: 25px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  h4 {
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  p {
+    padding-top: 15px;
+    font-size: 17px;
+    transition: color 0.3s ease;
+  }
+}
+
+.teacher__card:hover .teacher__card__text h3 {
+  transform: translateY(-5px);
+  color: #f0a500;
+}
+
+.teacher__card:hover .teacher__card__text h4 {
+  transform: translateY(-3px);
+  color: #ffc107;
+}
+
+.teacher__card:hover .teacher__card__text p {
+  color: #d4d4d4;
+}
+
+.teacher__card {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.teacher__card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.teacher__btn {
+  color: #fff;
+  font-size: 34px;
+  border: 2px;
+  text-align: center;
+  padding: 3px 6px;
+  border: 3px solid white;
+  border-radius: 10px;
+  width: 60%;
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.teacher__btn__div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.teacher__btn {
+  text-decoration: none;
+  text-align: center;
+}
+
+.teacher__img__div {
+  text-decoration: none;
+  position: relative;
+
+  &:hover {
+    .teacher__btn {
+      transform: translateY(-100px);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,116 @@
+.h1 {
+  font-size: 36px;
+  padding: 50px 30px;
+  border-bottom: 4px solid #3498db;
+  text-align: center;
+  line-height: 1.6;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.df {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.nav {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #1e88e5;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #e3f2fd;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav a:hover {
+  background: #bbdefb;
+  color: #1565c0;
+}
+
+.new {
+  font-size: 20px;
+  line-height: 1.8;
+  text-align: justify;
+  margin: 25px;
+  color: #34495e;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1024px) {
+  .h1 {
+    font-size: 30px;
+    padding: 40px 20px;
+  }
+
+  .df {
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .nav {
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .nav a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 26px;
+    padding: 30px 15px;
+  }
+
+  .df {
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .nav a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    font-size: 22px;
+    padding: 20px 10px;
+  }
+
+  .df {
+    gap: 10px;
+    padding: 0;
+  }
+
+  .nav {
+    gap: 10px;
+  }
+
+  .nav a {
+    font-size: 12px;
+  }
+}

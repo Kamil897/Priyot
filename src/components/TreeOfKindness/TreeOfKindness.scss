@@ -1,0 +1,58 @@
+.tree-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.tree {
+    position: relative;
+    width: 200px; /* Adjust as needed */
+    height: 400px;
+    border-bottom: 10px solid brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse; // Start branches from the bottom up
+    
+    
+}
+
+
+.branch {
+    position: absolute;
+    left: 50%;
+    transform-origin: top center;
+
+    .fruit{
+        white-space: nowrap; // Prevents fruit from breaking onto a new line
+         background-color: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        display: inline-block;
+    }
+  
+}
+
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+
+  button {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #45a049;
+    }
+  }
+}

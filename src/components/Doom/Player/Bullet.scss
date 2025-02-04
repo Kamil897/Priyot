@@ -1,0 +1,15 @@
+/* Doom.scss */
+.game-field {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bullet {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
