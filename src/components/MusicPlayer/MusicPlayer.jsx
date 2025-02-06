@@ -28,6 +28,14 @@ const tracks = [
     favorited: false,
   },
   {
+    name: "Голая",
+    artist: "Градусы",
+    cover: "/images/Gradys.jpg",
+    source: "/music/Golaya.mp3",
+    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
+    favorited: false,
+  },
+  {
     name: "Promise to Myself",
     artist: "Matt Heath",
     cover: "/images/Myself.jpg",
