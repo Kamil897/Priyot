@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom"; // Импортируем useLocation
+import { useLocation } from "react-router-dom";
 import "./MusicPlayer.css";
 
 const tracks = [
@@ -116,12 +116,11 @@ const MusicPlayer = ({ isFixed = false }) => {
   const [barWidth, setBarWidth] = useState("0%");
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState("00:00");
-  const audioRef = useRef(new Audio(tracks[currentTrackIndex].source));
+  const audioRef = useRef(new Audio());
 
   useEffect(() => {
     const audio = audioRef.current;
     audio.src = tracks[currentTrackIndex].source;
-    audio.preload = "auto";
     audio.load();
 
     const updateMetadata = () => setDuration(formatTime(audio.duration));
@@ -129,14 +128,18 @@ const MusicPlayer = ({ isFixed = false }) => {
       setBarWidth(`${(audio.currentTime / audio.duration) * 100}%`);
       setCurrentTime(formatTime(audio.currentTime));
     };
+
     const handleTrackEnd = () => {
       nextTrack();
-      setIsPlaying(true);
     };
 
     audio.addEventListener("loadedmetadata", updateMetadata);
     audio.addEventListener("timeupdate", updateProgress);
     audio.addEventListener("ended", handleTrackEnd);
+
+    if (isPlaying) {
+      audio.play().catch(() => setIsPlaying(false));
+    }
 
     return () => {
       audio.removeEventListener("loadedmetadata", updateMetadata);
@@ -146,16 +149,24 @@ const MusicPlayer = ({ isFixed = false }) => {
   }, [currentTrackIndex]);
 
   const playPause = () => {
+    const audio = audioRef.current;
     if (isPlaying) {
-      audioRef.current.pause();
+      audio.pause();
     } else {
-      audioRef.current.play();
+      audio.play().catch(() => setIsPlaying(false));
     }
     setIsPlaying(!isPlaying);
   };
 
-  const nextTrack = () => setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
-  const prevTrack = () => setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
+  const nextTrack = () => {
+    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
+    setIsPlaying(true);
+  };
+
+  const prevTrack = () => {
+    setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
+    setIsPlaying(true);
+  };
 
   return (
     <div className={`player-music ${isFixed ? "player--fixed" : ""}`}>
@@ -164,7 +175,9 @@ const MusicPlayer = ({ isFixed = false }) => {
       </div>
       <div className="album-info">
         {isFixed ? (
-          <p className="album-info__playing-now">Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}</p>
+          <p className="album-info__playing-now">
+            Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}
+          </p>
         ) : (
           <>
             <h2 className="album-info__name">{tracks[currentTrackIndex].name}</h2>
@@ -189,13 +202,13 @@ const MusicPlayer = ({ isFixed = false }) => {
       </div>
       <div className="player-controls">
         <button className="player-controls__item" onClick={prevTrack}>
-          <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
+          ⏮️
         </button>
         <button className="player-controls__item -xl" onClick={playPause}>
           {isPlaying ? "⏸️" : "▶️"}
         </button>
         <button className="player-controls__item" onClick={nextTrack}>
-          <img src="./Shape.png" alt="Next" className="player-controls__icon" />
+          ⏭️
         </button>
       </div>
     </div>
