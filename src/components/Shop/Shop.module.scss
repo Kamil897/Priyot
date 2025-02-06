@@ -3,20 +3,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #1c1c1c; /* Темный фон карточки */
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
   color: white;
   border: 2px solid #afafaf;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   margin: 20px;
   width: 350px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  margin-bottom: 70px;
+  
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -24,14 +24,23 @@
   width: 100%;
   height: 400px;
   margin-bottom: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .cardHeader {
   h3 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 8px;
-    color: #f0e68c; /* Желтый акцент заголовка */
+    margin-bottom: 10px;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   }
 
   p {
@@ -42,24 +51,25 @@
 }
 
 .cardBody {
-  padding: 0 10px 10px 10px;
+  padding: 10px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .price {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  color: #f0e68c;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .buyButton {
-  background: #f0e68c;
+  background: linear-gradient(145deg, #ffd700, #ffcc00);
   color: black;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+  border-radius: 10px;
+  padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
@@ -67,12 +77,12 @@
   transition: background 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background: #ffcc00;
-    transform: scale(1.05);
+    background: linear-gradient(145deg, #ffcc00, #ffd700);
+    transform: scale(1.08);
   }
 
   &:disabled {
-    background: #ccc;
+    background: #666;
     cursor: not-allowed;
   }
 }
@@ -81,18 +91,18 @@
   width: 370px;
   margin-top: 20px;
   padding: 25px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #333;
+  border: 1px solid #afafaf;
+  border-radius: 12px;
+  background-color: #2c2c2c;
   color: white;
   position: absolute;
   bottom: -20px;
   left: -1px;
 
   h4 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    color: #f0e68c;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    color: #ffd700;
   }
 
   p {
@@ -103,14 +113,15 @@
 
   .input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 10px;
+    padding: 12px;
+    border: 1px solid #afafaf;
+    border-radius: 8px;
+    margin-bottom: 12px;
 
     &:focus {
       outline: none;
-      border-color: #007bff;
+      border-color: #ffcc00;
+      box-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
     }
   }
 
@@ -128,8 +139,8 @@
       background-color: #28a745;
       color: #fff;
       border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
+      padding: 12px 20px;
+      border-radius: 8px;
       cursor: pointer;
 
       &:hover {
@@ -141,8 +152,8 @@
       background-color: #dc3545;
       color: #fff;
       border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
+      padding: 12px 20px;
+      border-radius: 8px;
       cursor: pointer;
 
       &:hover {
@@ -165,12 +176,12 @@
   }
 
   .buyButton {
-    padding: 8px 16px;
+    padding: 10px 18px;
     font-size: 15px;
   }
 
   .price {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
