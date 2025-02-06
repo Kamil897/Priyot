@@ -1,17 +1,17 @@
 body {
-  transition: background 1s ease-in-out, color 0.7s ease-in-out;
+  transition: background 1s ease, color 1s ease;
 }
 
 .light {
   background-color: #DBE6F6;
   color: #ff6750;
-  transition: background 1s ease-in-out, color 0.7s ease-in-out;
+  transition: background 1s ease, color 1s ease;
 }
 
 .dark {
   background: linear-gradient(180deg, #2c2c54, #1e1e42);
   color: #fff;
-  transition: background 1s ease-in-out, color 0.7s ease-in-out;
+  transition: background 1s ease, color 1s ease;
 }
 
 .button {
