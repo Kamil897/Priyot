@@ -99,6 +99,10 @@ const Magaz = () => {
     <div className={s.toys_title}>
       <h1>Магазин игрушек</h1>
       <h1>У вас есть {user.points} евро</h1>
+      <header className={s.header_toys}>
+        <h1>Магазин игрушек</h1>
+      </header>
+      <h2>У вас есть {user.points} евро</h2>
       <div className={s.prefix_list}>
         {prefixes.map((prefix) => (
           <Shop key={prefix.id} prefix={prefix} />

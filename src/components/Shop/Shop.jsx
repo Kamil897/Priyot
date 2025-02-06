@@ -15,7 +15,7 @@ const Shop = ({ prefix }) => {
   };
 
   const handleConfirmPurchase = () => {
-    if (!/^\\d{16}$/.test(cardNumber)) {
+    if (!/^\d{16}$/.test(cardNumber)) {
       setError("Введите корректный номер карты из 16 цифр.");
       return;
     }
@@ -23,6 +23,7 @@ const Shop = ({ prefix }) => {
     if (spendPoints(prefix.price)) {
       alert(`Покупка "${prefix.name}" успешно завершена!`);
       setIsFormVisible(false);
+      setError(""); // Сброс ошибки после успешной покупки
     } else {
       alert("Недостаточно баллов для покупки.");
     }
@@ -35,6 +36,7 @@ const Shop = ({ prefix }) => {
         <h3>{prefix.name}</h3>
         <p>{prefix.description}</p>
       </div>
+
       <div className={s.cardBody}>
         <p>
           Цена: <span className={s.price}>{prefix.price} €</span>
@@ -59,7 +61,9 @@ const Shop = ({ prefix }) => {
             type="text"
             placeholder="Введите номер карты"
             value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
+            onChange={(e) =>
+              setCardNumber(e.target.value.replace(/\D/g, "")) // Разрешаем только цифры
+            }
             maxLength={16}
             className={s.input}
           />

@@ -10,6 +10,14 @@
   padding: 30px;
   margin: 20px;
   width: 370px;
+  background: #1c1c1c;
+  color: white;
+  border: 2px solid #afafaf;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 350px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
@@ -39,6 +47,28 @@
 }
 
 .cardBody {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 12px;
+}
+
+.cardHeader {
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #f0e68c;
+  }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #ccc;
+  }
+}
+
+.cardBody {
+  padding: 0 10px 10px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +83,12 @@
 .buyButton {
   background: #4caf50;
   color: white;
+  color: #f0e68c;
+}
+
+.buyButton {
+  background: #f0e68c;
+  color: black;
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
@@ -64,6 +100,7 @@
 
   &:hover {
     background: #45a049;
+    background: #ffcc00;
     transform: scale(1.05);
   }
 
@@ -80,6 +117,8 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
+  background-color: #333;
+  color: white;
   position: absolute;
   bottom: -20px;
   left: -1px;
@@ -87,13 +126,19 @@
   h4 {
     margin-bottom: 10px;
     font-size: 1.2rem;
+
     color: #333;
+
+    color: #f0e68c;
+
   }
 
   p {
     margin-bottom: 10px;
     font-size: 1rem;
+
     color: #555;
+    color: #ddd;
   }
 
   .input {
@@ -204,4 +249,5 @@
     flex-direction: column;
     gap: 10px;
   }
+
 }

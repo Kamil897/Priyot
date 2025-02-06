@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+body {
+  margin: 0 auto;
+}
 
 .container__main {
   padding: 0 15px;

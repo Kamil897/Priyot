@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom"; // Импортируем useLocation
+import { useLocation } from "react-router-dom";
 import "./MusicPlayer.css";
 
 const tracks = [
@@ -28,6 +28,7 @@ const tracks = [
     favorited: false,
   },
   {
+<<<<<<< HEAD
     name: "Голая",
     artist: "Градусы",
     cover: "/images/Gradys.jpg",
