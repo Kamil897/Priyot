@@ -20,34 +20,35 @@
 }
 
 .teacher__img {
-  width: 250px; /* Уменьшено с 300px */
-  height: auto;
+  width: 250px;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px 0 0 10px;
   transition: filter 0.5s ease-in-out;
   overflow: hidden;
 }
 
+
 .teacher__card__text {
-  padding: 20px 10px 10px 10px; /* Уменьшены отступы */
+  padding: 20px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px; /* Уменьшен разрыв между элементами */
+  gap: 8px;
 
   h3 {
-    font-size: 20px; /* Уменьшен размер заголовка */
+    font-size: 20px;
     transition: color 0.3s ease, transform 0.3s ease;
   }
 
   h4 {
-    font-size: 16px; /* Уменьшен размер подзаголовка */
+    font-size: 16px;
     transition: color 0.3s ease, transform 0.3s ease;
   }
 
   p {
-    padding-top: 10px; /* Уменьшен отступ сверху */
-    font-size: 14px; /* Уменьшен размер текста */
+    padding-top: 10px;
+    font-size: 14px;
     transition: color 0.3s ease;
   }
 }
@@ -68,13 +69,13 @@
 
 .teacher__btn {
   color: #fff;
-  font-size: 20px; /* Уменьшен размер текста кнопки */
+  font-size: 20px;
   border: 2px;
   text-align: center;
   padding: 3px 6px;
-  border: 2px solid white; /* Толщина уменьшена с 3px */
+  border: 2px solid white;
   border-radius: 10px;
-  width: 50%; /* Уменьшена ширина кнопки */
+  width: 50%;
   transition: 0.3s;
   visibility: hidden;
   opacity: 0;
