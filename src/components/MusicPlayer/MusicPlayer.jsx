@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom"; // Импортируем useLocation
 import "./MusicPlayer.css";
 
 const tracks = [
@@ -24,15 +24,6 @@ const tracks = [
     artist: "Tomo Frozy",
     cover: "/images/Island.jpg",
     source: "/music/She_Said_Shes_From_The_Islands.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-<<<<<<< HEAD
-    name: "Голая",
-    artist: "Градусы",
-    cover: "/images/Gradys.jpg",
-    source: "/music/Golaya.mp3",
     url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
     favorited: false,
   },
