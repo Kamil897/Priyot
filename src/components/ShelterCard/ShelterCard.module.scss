@@ -10,7 +10,7 @@
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    transform: scale(1.05) rotate(1deg);
+    transform: scale(1.03) rotate(1deg);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
   }
 
@@ -20,7 +20,7 @@
 }
 
 .teacher__img {
-  width: 300px;
+  width: 250px; /* Уменьшено с 300px */
   height: auto;
   object-fit: cover;
   border-radius: 10px 0 0 10px;
@@ -29,26 +29,25 @@
 }
 
 .teacher__card__text {
-  padding: 30px 10px 10px 10px;
+  padding: 20px 10px 10px 10px; /* Уменьшены отступы */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 8px; /* Уменьшен разрыв между элементами */
 
   h3 {
-    font-style: bold;
-    font-size: 25px;
+    font-size: 20px; /* Уменьшен размер заголовка */
     transition: color 0.3s ease, transform 0.3s ease;
   }
 
   h4 {
-    font-size: 18px;
+    font-size: 16px; /* Уменьшен размер подзаголовка */
     transition: color 0.3s ease, transform 0.3s ease;
   }
 
   p {
-    padding-top: 15px;
-    font-size: 17px;
+    padding-top: 10px; /* Уменьшен отступ сверху */
+    font-size: 14px; /* Уменьшен размер текста */
     transition: color 0.3s ease;
   }
 }
@@ -67,24 +66,15 @@
   color: #d4d4d4;
 }
 
-.teacher__card {
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.teacher__card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-}
-
 .teacher__btn {
   color: #fff;
-  font-size: 34px;
+  font-size: 20px; /* Уменьшен размер текста кнопки */
   border: 2px;
   text-align: center;
   padding: 3px 6px;
-  border: 3px solid white;
+  border: 2px solid white; /* Толщина уменьшена с 3px */
   border-radius: 10px;
-  width: 60%;
+  width: 50%; /* Уменьшена ширина кнопки */
   transition: 0.3s;
   visibility: hidden;
   opacity: 0;
