@@ -1,17 +1,15 @@
 body {
-  transition: background 1s ease, color 1s ease;
+  transition: background 0.7s ease, color 0.5s ease;
 }
 
 .light {
   background-color: #DBE6F6;
   color: #ff6750;
-  transition: background 1s ease, color 1s ease;
 }
 
 .dark {
   background: linear-gradient(180deg, #2c2c54, #1e1e42);
-  color: #fff;
-  transition: background 1s ease, color 1s ease;
+  color: #ff6750;  
 }
 
 .button {
@@ -52,7 +50,6 @@ body {
   }
 }
 
-
 .header {
   padding: 70px;
   border-bottom: 1px solid #4717b0;
@@ -73,6 +70,7 @@ body {
     align-items: center;
     text-decoration: none;
 
+
     li {
       display: flex;
     }
@@ -86,7 +84,7 @@ body {
       font-size: 20px;
 
       &:hover {
-        color: #996aff;
+       color: #996aff;
       }
 
       @media (max-width: 550px) {
@@ -264,7 +262,6 @@ body {
     }
   }
 }
-
 
 /* Адаптив до 1024px */
 @media (max-width: 1024px) {
