@@ -7,43 +7,43 @@ const tracks = [
     name: "Stan",
     artist: "Eminem, Dido",
     cover: "/images/Stan.jpg",
-    source: "/music/Stan.mp3",
+    source: "/public/music/Stan.mp3",
   },
   {
     name: "She Said Shes From The Islands",
     artist: "Tomo Frozy",
     cover: "/images/Island.jpg",
-    source: "/music/She_Said_Shes_From_The_Islands.mp3",
+    source:  "/public/music/She_Said_Shes_From_The_Islands.mp3",
   },
   {
     name: "Headlock (Immis Radio Mix)",
     artist: "Imogen Heap",
     cover: "/images/Imogen_Heap.jpg",
-    source: "/music/Imogen-Heap.mp3",
+    source: "/public/music/Imogen-Heap.mp3",
   },
   {
     name: "Je Reve",
     artist: "La Meprise",
     cover: "/images/Je_Reve.jpg",
-    source: "/music/Je_Reve.mp3",
+    source: "/public/music/Je_Reve.mp3",
   },
   {
     name: "Die With A Smile",
     artist: "Lady Gaga & Bruno Mars",
     cover: "/images/LadyGaga_BrunoMars_.jpg",
-    source: "/music/Lady_Gaga_Bruno_Mars.mp3",
+    source: "/public/music/Lady_Gaga_Bruno_Mars.mp3",
   },
   {
     name: "Like Him (feat. Lola Young)",
     artist: "Tyler, The Creator CHROMAKOPIA",
     cover: "/images/Tyler.jpg",
-    source: "/music/Tyler.mp3",
+    source: "/public/music/Tyler.mp3",
   },
   {
     name: "Fly me to the moon Squid game",
     artist: "Joo Won",
     cover: "/images/Squid.jpg",
-    source: "/music/Squid_game.mp3",
+    source: "/public/music/Squid_game.mp3",
   },
 ];
 
@@ -65,23 +65,31 @@ const MusicPlayer = ({ isFixed = false }) => {
   const audioRef = useRef(new Audio());
 
   useEffect(() => {
-    const audio = audioRef.current;
-    audio.src = tracks[currentTrackIndex].source;
+    const audio = new Audio(tracks[currentTrackIndex].source);
+    audioRef.current = audio;
+  
+    audio.preload = "auto";
+    console.log("Загружаем аудиофайл:", tracks[currentTrackIndex].source);
     audio.load();
-
+  
     const updateMetadata = () => setDuration(formatTime(audio.duration));
     const updateProgress = () => {
       setBarWidth(`${(audio.currentTime / audio.duration) * 100}%`);
       setCurrentTime(formatTime(audio.currentTime));
     };
-    const handleTrackEnd = () => nextTrack();
-    const handleError = () => console.error("Ошибка загрузки аудиофайла:", tracks[currentTrackIndex].source);
-
+    const handleTrackEnd = () => {
+      nextTrack();
+      setIsPlaying(true);
+    };
+    const handleError = () => {
+      console.error("Ошибка загрузки аудиофайла:", tracks[currentTrackIndex].source);
+    };
+  
     audio.addEventListener("loadedmetadata", updateMetadata);
     audio.addEventListener("timeupdate", updateProgress);
     audio.addEventListener("ended", handleTrackEnd);
     audio.addEventListener("error", handleError);
-
+  
     return () => {
       audio.removeEventListener("loadedmetadata", updateMetadata);
       audio.removeEventListener("timeupdate", updateProgress);
@@ -90,6 +98,7 @@ const MusicPlayer = ({ isFixed = false }) => {
       audio.pause();
     };
   }, [currentTrackIndex]);
+  
 
   const playPause = () => {
     if (isPlaying) {
@@ -121,11 +130,14 @@ const MusicPlayer = ({ isFixed = false }) => {
         )}
       </div>
       <div className={`progress ${isFixed ? "progress_none" : ""}`}>
-        <div className="progress__bar" onClick={(e) => {
-          const rect = e.target.getBoundingClientRect();
-          const percentage = (e.clientX - rect.left) / rect.width;
-          audioRef.current.currentTime = percentage * audioRef.current.duration;
-        }}>
+        <div
+          className="progress__bar"
+          onClick={(e) => {
+            const rect = e.target.getBoundingClientRect();
+            const percentage = (e.clientX - rect.left) / rect.width;
+            audioRef.current.currentTime = percentage * audioRef.current.duration;
+          }}
+        >
           <div className="progress__current" style={{ width: barWidth }}></div>
         </div>
         <div className="progress__time">
@@ -134,13 +146,13 @@ const MusicPlayer = ({ isFixed = false }) => {
       </div>
       <div className="player-controls">
         <button className="player-controls__item" onClick={prevTrack}>
-          <img src="/images/Shape2.png" alt="Previous" className="player-controls__icon" />
+          <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
         </button>
         <button className="player-controls__item -xl" onClick={playPause}>
           {isPlaying ? "⏸️" : "▶️"}
         </button>
         <button className="player-controls__item" onClick={nextTrack}>
-          <img src="/images/Shape.png" alt="Next" className="player-controls__icon" />
+          <img src="./Shape.png" alt="Next" className="player-controls__icon" />
         </button>
       </div>
     </div>
