@@ -192,7 +192,7 @@ const MusicPlayer = ({ isFixed = false }) => {
           <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
         </button>
         <button className="player-controls__item -xl" onClick={playPause}>
-          {isPlaying ? "⏸️" : "▶️"}
+          {isPlaying ? "||" : "▶"}
         </button>
         <button className="player-controls__item" onClick={nextTrack}>
           <img src="./Shape.png" alt="Next" className="player-controls__icon" />
