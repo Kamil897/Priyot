@@ -73,15 +73,12 @@
   justify-content: space-around;
   width: 100%;
 }
-
 .player-controls__icon {
-  width: 20px;
+  width: 20px; /* или любой другой размер */
   height: 20px;
 }
 
 .player-controls__item {
-  width: 40px;
-  height: 35px;
   border: 1px solid black;
   border-radius: 6px;
   padding: 3px 10px;
@@ -92,7 +89,7 @@
 }
 
 .player-controls__item.-xl {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .player-controls__item:hover {

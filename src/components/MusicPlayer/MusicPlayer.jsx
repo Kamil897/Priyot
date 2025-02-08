@@ -8,66 +8,45 @@ const tracks = [
     artist: "Eminem, Dido",
     cover: "/images/Stan.jpg",
     source: "/music/Stan.mp3",
-    url: "https://youtu.be/nGcM8afe0F4",
-    favorited: false,
   },
   {
-    name: "She Said She's From The Islands",
+    name: "She Said Shes From The Islands",
     artist: "Tomo Frozy",
     cover: "/images/Island.jpg",
     source: "/music/She_Said_Shes_From_The_Islands.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "90",
-    artist: "Pompeya",
-    cover: "/images/Hotel.jpg",
-    source: "/music/Pompeya.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Like Him (feat. Lola Young)",
-    artist: "Tyler, The Creator CHROMAKOPIA",
-    cover: "/images/Tyler.jpg",
-    source: "/music/Tyler.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Je Reve",
-    artist: "La Meprise",
-    cover: "/images/Je_Reve.jpg",
-    source: "/music/Je_Reve.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Die With A Smile",
-    artist: "Lady Gaga & Bruno Mars",
-    cover: "/images/LadyGaga_BrunoMars_.jpg",
-    source: "/music/Lady_Gaga_Bruno_Mars.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Just The Two Of Us ",
-    artist: "Grover Washington, Jr.",
-    cover: "/images/Grover_Washington.jpg",
-    source: "/music/Grover_Washington.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
   },
   {
     name: "Headlock (Immis Radio Mix)",
     artist: "Imogen Heap",
     cover: "/images/Imogen_Heap.jpg",
     source: "/music/Imogen-Heap.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
+  },
+  {
+    name: "Je Reve",
+    artist: "La Meprise",
+    cover: "/images/Je_Reve.jpg",
+    source: "/music/Je_Reve.mp3",
+  },
+  {
+    name: "Die With A Smile",
+    artist: "Lady Gaga & Bruno Mars",
+    cover: "/images/LadyGaga_BrunoMars_.jpg",
+    source: "/music/Lady_Gaga_Bruno_Mars.mp3",
+  },
+  {
+    name: "Like Him (feat. Lola Young)",
+    artist: "Tyler, The Creator CHROMAKOPIA",
+    cover: "/images/Tyler.jpg",
+    source: "/music/Tyler.mp3",
+  },
+  {
+    name: "Fly me to the moon Squid game",
+    artist: "Joo Won",
+    cover: "/images/Squid.jpg",
+    source: "/music/Squid_game.mp3",
   },
 ];
+
 
 const formatTime = (time) => {
   if (isNaN(time)) return "00:00";
@@ -159,7 +138,7 @@ const MusicPlayer = ({ isFixed = false }) => {
           <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
         </button>
         <button className="player-controls__item -xl" onClick={playPause}>
-          {isPlaying ? "||" : "▶"}
+          {isPlaying ? "⏸️" : "▶️"}
         </button>
         <button className="player-controls__item" onClick={nextTrack}>
           <img src="./Shape.png" alt="Next" className="player-controls__icon" />
@@ -170,3 +149,4 @@ const MusicPlayer = ({ isFixed = false }) => {
 };
 
 export default MusicPlayer;
+
