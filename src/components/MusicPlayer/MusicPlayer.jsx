@@ -65,11 +65,13 @@ const MusicPlayer = ({ isFixed = false }) => {
   const audioRef = useRef(new Audio());
 
   useEffect(() => {
-    const audio = audioRef.current;
-    audio.src = tracks[currentTrackIndex].source;
+    const audio = new Audio(tracks[currentTrackIndex].source);
+    audioRef.current = audio;
+  
     audio.preload = "auto";
+    console.log("Загружаем аудиофайл:", tracks[currentTrackIndex].source);
     audio.load();
-
+  
     const updateMetadata = () => setDuration(formatTime(audio.duration));
     const updateProgress = () => {
       setBarWidth(`${(audio.currentTime / audio.duration) * 100}%`);
@@ -82,19 +84,21 @@ const MusicPlayer = ({ isFixed = false }) => {
     const handleError = () => {
       console.error("Ошибка загрузки аудиофайла:", tracks[currentTrackIndex].source);
     };
-
+  
     audio.addEventListener("loadedmetadata", updateMetadata);
     audio.addEventListener("timeupdate", updateProgress);
     audio.addEventListener("ended", handleTrackEnd);
     audio.addEventListener("error", handleError);
-
+  
     return () => {
       audio.removeEventListener("loadedmetadata", updateMetadata);
       audio.removeEventListener("timeupdate", updateProgress);
       audio.removeEventListener("ended", handleTrackEnd);
       audio.removeEventListener("error", handleError);
+      audio.pause();
     };
   }, [currentTrackIndex]);
+  
 
   const playPause = () => {
     if (isPlaying) {
