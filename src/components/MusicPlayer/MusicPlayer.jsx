@@ -149,7 +149,7 @@ const MusicPlayer = ({ isFixed = false }) => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current.play().catch((e) => console.error("Ошибка воспроизведения:", e));
     }
     setIsPlaying(!isPlaying);
   };
@@ -172,7 +172,7 @@ const MusicPlayer = ({ isFixed = false }) => {
           </>
         )}
       </div>
-      <div className={`progress ${isFixed ? "progress_none" : ""}`}>
+      <div className={`progress ${isFixed ? "progress_none" : ""}`}> 
         <div
           className="progress__bar"
           onClick={(e) => {
@@ -188,19 +188,12 @@ const MusicPlayer = ({ isFixed = false }) => {
         </div>
       </div>
       <div className="player-controls">
-        <button className="player-controls__item" onClick={prevTrack}>
-          <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
-        </button>
-        <button className="player-controls__item -xl" onClick={playPause}>
-          {isPlaying ? "||" : "▶"}
-        </button>
-        <button className="player-controls__item" onClick={nextTrack}>
-          <img src="./Shape.png" alt="Next" className="player-controls__icon" />
-        </button>
+        <button className="player-controls__item" onClick={prevTrack}>⏮</button>
+        <button className="player-controls__item -xl" onClick={playPause}>{isPlaying ? "⏸" : "▶"}</button>
+        <button className="player-controls__item" onClick={nextTrack}>⏭</button>
       </div>
     </div>
   );
 };
 
 export default MusicPlayer;
-
