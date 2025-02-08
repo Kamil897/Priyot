@@ -47,7 +47,6 @@ const tracks = [
   },
 ];
 
-
 const formatTime = (time) => {
   if (isNaN(time)) return "00:00";
   const minutes = Math.floor(time / 60);
@@ -62,7 +61,8 @@ const MusicPlayer = ({ isFixed = false }) => {
   const [barWidth, setBarWidth] = useState("0%");
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState("00:00");
-  const audioRef = useRef(new Audio(tracks[currentTrackIndex].source));
+
+  const audioRef = useRef(new Audio());
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -79,15 +79,20 @@ const MusicPlayer = ({ isFixed = false }) => {
       nextTrack();
       setIsPlaying(true);
     };
+    const handleError = () => {
+      console.error("Ошибка загрузки аудиофайла:", tracks[currentTrackIndex].source);
+    };
 
     audio.addEventListener("loadedmetadata", updateMetadata);
     audio.addEventListener("timeupdate", updateProgress);
     audio.addEventListener("ended", handleTrackEnd);
+    audio.addEventListener("error", handleError);
 
     return () => {
       audio.removeEventListener("loadedmetadata", updateMetadata);
       audio.removeEventListener("timeupdate", updateProgress);
       audio.removeEventListener("ended", handleTrackEnd);
+      audio.removeEventListener("error", handleError);
     };
   }, [currentTrackIndex]);
 
@@ -110,7 +115,9 @@ const MusicPlayer = ({ isFixed = false }) => {
       </div>
       <div className="album-info">
         {isFixed ? (
-          <p className="album-info__playing-now">Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}</p>
+          <p className="album-info__playing-now">
+            Сейчас играет: {tracks[currentTrackIndex].name} - {tracks[currentTrackIndex].artist}
+          </p>
         ) : (
           <>
             <h2 className="album-info__name">{tracks[currentTrackIndex].name}</h2>
@@ -149,4 +156,3 @@ const MusicPlayer = ({ isFixed = false }) => {
 };
 
 export default MusicPlayer;
-
