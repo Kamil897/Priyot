@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 import s from "./MainPage.module.scss";
-import Games from "../Games/Games.jsx";
+import Games from "../Games/Games";
 import WeatherWidget from "../WeatherWidget/WeatherWidget";
 
 const MainPage = () => {

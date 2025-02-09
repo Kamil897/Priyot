@@ -9,11 +9,15 @@
 .profileSection {
   flex: 0 0 350px;
   padding: 30px;
-  background: linear-gradient(145deg, #c2c2c2, #f0f0f0);
+  background: linear-gradient(145deg, #c2c2c2, #f0f0f0); /* Двухцветный эффект для объемности */
   border-radius: 30px;
-  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.2), -10px -10px 25px rgba(255, 255, 255, 0.5);
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.2), -10px -10px 25px rgba(255, 255, 255, 0.5); /* Неоморфизм */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 12px 12px 30px rgba(0, 0, 0, 0.3), -12px -12px 30px rgba(255, 255, 255, 0.6);
+  }
 }
 
 .profile {
@@ -28,7 +32,7 @@
     transform: translateX(-50%);
     width: 100px;
     height: 100px;
-    background: radial-gradient(circle, #ffafbd, #ffc3a0);
+    background: radial-gradient(circle, #ffafbd, #ffc3a0); /* Светящийся эффект за аватаркой */
     border-radius: 50%;
     z-index: -1;
     filter: blur(20px);
@@ -40,12 +44,12 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #ff6a88;
+  border: 4px solid #ff6a88; /* Акцентная рамка */
   transition: transform 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    transform: rotate(-5deg) scale(1.1);
+    transform: rotate(-5deg) scale(1.1); /* Лёгкий наклон и увеличение */
     border-color: #ff3f68;
   }
 }
@@ -66,7 +70,7 @@
     transform: translateX(-50%);
     width: 60%;
     height: 2px;
-    background: #ff6a88;
+    background: #ff6a88; /* Линия под именем */
   }
 }
 
@@ -105,7 +109,7 @@
 }
 
 .btn {
-  background: linear-gradient(to right, #ff6a88, #ff8e92);
+  background: linear-gradient(to right, #ff6a88, #ff8e92); /* Яркий градиент */
   color: white;
   font-size: 15px;
   font-weight: 600;
@@ -117,7 +121,7 @@
   box-shadow: 0 5px 15px rgba(255, 106, 136, 0.3);
 
   &:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: translateY(-5px) scale(1.05); /* Поднятие и увеличение */
     box-shadow: 0 8px 20px rgba(255, 106, 136, 0.4);
   }
 
@@ -142,6 +146,11 @@
   position: relative;
   transition-duration: 0.5s;
 
+
+  &:hover {
+    box-shadow: inset 12px 12px 24px rgba(0, 0, 0, 0.15), inset -12px -12px 24px rgba(255, 255, 255, 0.7);
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -152,111 +161,5 @@
     background: radial-gradient(circle at top left, rgba(255, 106, 136, 0.2), transparent);
     z-index: -1;
     border-radius: 30px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .profileSection {
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .profile {
-    margin-bottom: 20px;
-  }
-
-  .pfp, .defaultPfp {
-    width: 120px;
-    height: 120px;
-  }
-
-  .username {
-    font-size: 24px;
-  }
-
-  .info p {
-    font-size: 18px;
-  }
-
-  .actions {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn {
-    padding: 10px 15px;
-    font-size: 14px;
-  }
-
-  .other {
-    padding: 40px 20px;
-    background-size: cover;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .profileSection {
-    padding: 15px;
-  }
-
-  .pfp, .defaultPfp {
-    width: 100px;
-    height: 100px;
-  }
-
-  .username {
-    font-size: 20px;
-  }
-
-  .info p {
-    font-size: 16px;
-  }
-
-  .other {
-    margin: 0;
-    display: flex;
-    flex-direction: column-reverse;
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 10px;
-  }
-
-  .profileSection {
-    padding: 10px;
-  }
-
-  .pfp, .defaultPfp {
-    width: 80px;
-    height: 80px;
-  }
-
-  .username {
-    font-size: 18px;
-  }
-
-  .info p {
-    font-size: 14px;
-  }
-
-  .btn {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-
-  .other {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 80px auto;
   }
 }
