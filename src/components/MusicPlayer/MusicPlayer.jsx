@@ -7,13 +7,13 @@ const tracks = [
     name: "Stan",
     artist: "Eminem, Dido",
     cover: "/images/Stan.jpg",
-    source: "./music/Stan.mp3",
+    source: "./public/music/Stan.mp3",
   },
   {
     name: "Like Him (feat. Lola Young)",
     artist: "Tyler, The Creator CHROMAKOPIA",
     cover: "/images/Tyler.jpg",
-    source: "./music/Tyler.mp3",
+    source: "./public/music/Tyler.mp3",
   },
 ];
 
