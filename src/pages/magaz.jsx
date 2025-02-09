@@ -15,7 +15,7 @@ const prefixes = [
     id: 2, 
     name: "Сухой корм для собак", 
     description: "Высококачественный корм для собак всех пород.", 
-    image: "https://images.uzum.uz/cqosj8ssslomdvnjn6cg/t_product_540_high.jpg",
+    image: "https://api.zapovednik96.ru/upload/iblock/7c0/7c003b7dc5f4c9b095e3027060846256.jpg",
     price: 1500 
   },
   { 
@@ -85,7 +85,7 @@ const prefixes = [
     id: 12,
     name: "Лазерная указка для кошек",
     description: "Веселая и активная игра с лазерной точкой.",
-    image: "https://images.uzum.uz/cngsmhku2hhlb05g6nfg/original.jpg",
+    image: "https://avatars.mds.yandex.net/i?id=80918d15f6453128721378ac9037b54e_l-10599899-images-thumbs&n=13",
     price: 450
   }
 ];
