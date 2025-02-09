@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 import s from "./MainPage.module.scss";
-import Games from "../Games/Games";
 import WeatherWidget from "../WeatherWidget/WeatherWidget";
 
 const MainPage = () => {
@@ -14,8 +13,17 @@ const MainPage = () => {
     if (!username) {
       navigate("/login");
     } else {
-      const user = JSON.parse(localStorage.getItem(username));
-      setUserData(user);
+      try {
+        const user = JSON.parse(localStorage.getItem(username));
+        if (user) {
+          setUserData(user);
+        } else {
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Ошибка при чтении данных пользователя:", error);
+        navigate("/login");
+      }
     }
   }, [navigate]);
 
@@ -34,6 +42,7 @@ const MainPage = () => {
                 className={userData.avatar ? s.pfp : s.defaultPfp}
                 src={userData.avatar || "profileimg.png"}
                 alt="Profile"
+                onError={(e) => { e.target.src = "profileimg.png"; }}
               />
               <h2 className={s.username}>
                 {userData.firstName} {userData.lastName}
@@ -69,7 +78,9 @@ const MainPage = () => {
             </div>
           </>
         ) : (
-          <p>Загрузка...</p>
+          <div className={s.loader}>
+            <p>Загрузка данных...</p>
+          </div>
         )}
       </div>
       
@@ -82,9 +93,6 @@ const MainPage = () => {
           <WeatherWidget />
         </div>
       </div>
-
-
-
     </div>
   );
 };
