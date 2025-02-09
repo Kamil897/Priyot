@@ -1,5 +1,5 @@
 .container {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,20 +8,20 @@
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 4rem;
   margin-bottom: 30px;
   text-transform: uppercase;
-  letter-spacing: 4px;
-  animation: gradient-text 2s ease infinite; 
+  letter-spacing: 5px;
+  background: linear-gradient(90deg, #ffcc33, #ff5733, #ff33a8, #33d9ff);
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text 8s linear infinite alternate;
 }
 
 @keyframes gradient-text {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 100%;
-  }
+  0% { background-position: 0%; }
+  100% { background-position: 100%; }
 }
 
 .gamesGrid {
@@ -34,31 +34,48 @@
 }
 
 .gameCard {
-  background: linear-gradient(145deg, #485563, #2b2e4a);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  background: linear-gradient(145deg, #2e2f49, #1d1e30);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
 .gameCard:hover {
-  transform: translateY(-14px) scale(1.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  transform: translateY(-12px) scale(1.06);
+  box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(145deg, #3b3d65, #24263e);
+}
+
+.gameCard::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+.gameCard:hover::before {
+  opacity: 1;
 }
 
 .gameTitle {
-  font-size: 2rem;
+  font-size: 2.3rem;
   margin-bottom: 15px;
   color: #ffd93d;
   text-transform: capitalize;
-  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 5px 15px rgba(255, 217, 61, 0.8);
 }
 
 .gameDescription {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #e0e0e0;
   margin-bottom: 25px;
 }
@@ -68,18 +85,59 @@
 }
 
 .playButton {
+  background: linear-gradient(145deg, #ffcc33, #ff5733);
   border: none;
-  padding: 14px 30px;
-  border-radius: 10px;
-  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-size: 1.4rem;
   font-weight: bold;
+  text-transform: uppercase;
+  color: white;
   cursor: pointer;
-  transition: box-shadow 0.4s, transform 0.7s ease;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
 .playButton:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+  transform: translateY(-6px) scale(1.12);
+  box-shadow: 0 0 25px rgba(255, 204, 0, 0.8);
+  background: linear-gradient(145deg, #ff5733, #ffcc33);
+}
+
+.playButton:active {
+  transform: scale(0.95);
+}
+
+.playButton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400%;
+  height: 400%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.playButton:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.playButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.playButton:hover::after {
+  opacity: 1;
 }
 
 .disabledButton {
@@ -87,13 +145,39 @@
   color: #bbb;
   border: none;
   padding: 14px 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 1.1rem;
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 @media (max-width: 1024px) {
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .gamesGrid {
+    gap: 25px;
+  }
+
+  .gameCard {
+    padding: 25px;
+  }
+
+  .gameTitle {
+    font-size: 2rem;
+  }
+
+  .gameDescription {
+    font-size: 1.4rem;
+  }
+
+  .playButton {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
   .title {
     font-size: 3rem;
   }
@@ -116,10 +200,11 @@
 
   .playButton {
     font-size: 1rem;
+    padding: 14px 28px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .title {
     font-size: 2.5rem;
   }
@@ -143,32 +228,5 @@
   .playButton {
     font-size: 0.9rem;
     padding: 12px 25px;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
-    font-size: 2rem;
-  }
-
-  .gamesGrid {
-    gap: 10px;
-  }
-
-  .gameCard {
-    padding: 10px;
-  }
-
-  .gameTitle {
-    font-size: 1.4rem;
-  }
-
-  .gameDescription {
-    font-size: 1rem;
-  }
-
-  .playButton {
-    font-size: 0.8rem;
-    padding: 10px 20px;
   }
 }
