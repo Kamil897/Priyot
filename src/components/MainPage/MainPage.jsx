@@ -86,7 +86,7 @@ const MainPage = () => {
       
       <div className={s.other}>
         <div className={s.playerSection}>
-          <MusicPlayer isFixed={false} />
+          <MusicPlayer />
         </div>
 
         <div className={s.weatherSection}>
