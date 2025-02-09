@@ -2,30 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 import s from "./MainPage.module.scss";
-import Games from "../Games/Games"; // Удалил .jsx, т.к. Webpack сам это обрабатывает
+import Games from "../Games/Games.jsx";
 import WeatherWidget from "../WeatherWidget/WeatherWidget";
-import defaultAvatar from "../../assets/profileimg.png"; // Импорт изображения, если оно хранится в src
 
 const MainPage = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
-  // Проверяем наличие пользователя в локальном хранилище
   useEffect(() => {
     const username = localStorage.getItem("loggedInUsername");
     if (!username) {
       navigate("/login");
     } else {
-      const user = JSON.parse(localStorage.getItem(username) || "{}");
-      if (Object.keys(user).length === 0) {
-        navigate("/login");
-      } else {
-        setUserData(user);
-      }
+      const user = JSON.parse(localStorage.getItem(username));
+      setUserData(user);
     }
   }, [navigate]);
 
-  // Обработчик выхода из аккаунта
   const handleLogout = () => {
     localStorage.removeItem("loggedInUsername");
     navigate("/login");
@@ -39,7 +32,7 @@ const MainPage = () => {
             <div className={s.profile}>
               <img
                 className={userData.avatar ? s.pfp : s.defaultPfp}
-                src={userData.avatar || defaultAvatar}
+                src={userData.avatar || "profileimg.png"}
                 alt="Profile"
               />
               <h2 className={s.username}>
@@ -79,7 +72,7 @@ const MainPage = () => {
           <p>Загрузка...</p>
         )}
       </div>
-
+      
       <div className={s.other}>
         <div className={s.playerSection}>
           <MusicPlayer isFixed={false} />
@@ -89,6 +82,9 @@ const MainPage = () => {
           <WeatherWidget />
         </div>
       </div>
+
+
+
     </div>
   );
 };
