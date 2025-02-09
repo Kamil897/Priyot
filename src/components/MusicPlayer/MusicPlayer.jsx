@@ -13,7 +13,6 @@ const tracks = [
   }
 ];
 
-
 const formatTime = (time) => {
   if (isNaN(time)) return "00:00";
   const minutes = Math.floor(time / 60);
@@ -28,13 +27,11 @@ const MusicPlayer = ({ isFixed = false }) => {
   const [barWidth, setBarWidth] = useState("0%");
   const [duration, setDuration] = useState("00:00");
   const [currentTime, setCurrentTime] = useState("00:00");
-  const audioRef = useRef(new Audio(tracks[currentTrackIndex].source));
+  const audioRef = useRef(null);
 
   useEffect(() => {
+    audioRef.current = new Audio(tracks[currentTrackIndex].source);
     const audio = audioRef.current;
-    audio.src = tracks[currentTrackIndex].source;
-    audio.preload = "auto";
-    audio.load();
 
     const updateMetadata = () => setDuration(formatTime(audio.duration));
     const updateProgress = () => {
@@ -43,14 +40,18 @@ const MusicPlayer = ({ isFixed = false }) => {
     };
     const handleTrackEnd = () => {
       nextTrack();
-      setIsPlaying(true);
     };
 
     audio.addEventListener("loadedmetadata", updateMetadata);
     audio.addEventListener("timeupdate", updateProgress);
     audio.addEventListener("ended", handleTrackEnd);
 
+    if (isPlaying) {
+      audio.play();
+    }
+
     return () => {
+      audio.pause();
       audio.removeEventListener("loadedmetadata", updateMetadata);
       audio.removeEventListener("timeupdate", updateProgress);
       audio.removeEventListener("ended", handleTrackEnd);
@@ -58,6 +59,7 @@ const MusicPlayer = ({ isFixed = false }) => {
   }, [currentTrackIndex]);
 
   const playPause = () => {
+    if (!audioRef.current) return;
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -66,8 +68,13 @@ const MusicPlayer = ({ isFixed = false }) => {
     setIsPlaying(!isPlaying);
   };
 
-  const nextTrack = () => setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
-  const prevTrack = () => setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
+  const nextTrack = () => {
+    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length);
+  };
+
+  const prevTrack = () => {
+    setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length);
+  };
 
   return (
     <div className={`player-music ${isFixed ? "player--fixed" : ""}`}>
@@ -90,7 +97,9 @@ const MusicPlayer = ({ isFixed = false }) => {
           onClick={(e) => {
             const rect = e.target.getBoundingClientRect();
             const percentage = (e.clientX - rect.left) / rect.width;
-            audioRef.current.currentTime = percentage * audioRef.current.duration;
+            if (audioRef.current) {
+              audioRef.current.currentTime = percentage * audioRef.current.duration;
+            }
           }}
         >
           <div className="progress__current" style={{ width: barWidth }}></div>
@@ -104,7 +113,11 @@ const MusicPlayer = ({ isFixed = false }) => {
           <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
         </button>
         <button className="player-controls__item -xl" onClick={playPause}>
-          {isPlaying ? "||" : "▶"}
+          {isPlaying ? (
+            <img src="./pause-icon.png" alt="Pause" className="player-controls__icon" />
+          ) : (
+            <img src="./play-icon.png" alt="Play" className="player-controls__icon" />
+          )}
         </button>
         <button className="player-controls__item" onClick={nextTrack}>
           <img src="./Shape.png" alt="Next" className="player-controls__icon" />
@@ -115,4 +128,3 @@ const MusicPlayer = ({ isFixed = false }) => {
 };
 
 export default MusicPlayer;
-
