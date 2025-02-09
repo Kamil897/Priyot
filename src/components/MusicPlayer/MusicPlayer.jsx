@@ -12,34 +12,10 @@ const tracks = [
     favorited: false,
   },
   {
-    name: "Everybody Knows",
-    artist: "Sigrid",
-    cover: "/images/Liga.jpg",
-    source: "/music/Everybody_Knows.mp3",
-    url: "https://youtu.be/zrV5of2p-oc",
-    favorited: false,
-  },
-  {
     name: "She Said Shes From The Islands",
     artist: "Tomo Frozy",
     cover: "/images/Island.jpg",
     source: "/music/She_Said_Shes_From_The_Islands.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Голая",
-    artist: "Градусы",
-    cover: "/images/Gradys.jpg",
-    source: "/music/Golaya.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
-    name: "Promise to Myself",
-    artist: "Matt Heath",
-    cover: "/images/Myself.jpg",
-    source: "/music/Matt_Heath.mp3",
     url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
     favorited: false,
   },
@@ -76,14 +52,6 @@ const tracks = [
     favorited: false,
   },
   {
-    name: "Одно и тоже",
-    artist: "iowa",
-    cover: "/images/odno.jpg",
-    source: "/music/odno_i_toje.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
-  {
     name: "90",
     artist: "Pompeya",
     cover: "/images/Hotel.jpg",
@@ -98,15 +66,7 @@ const tracks = [
     source: "/music/Tyler.mp3",
     url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
     favorited: false,
-  },
-  {
-    name: "Fly me to the moon Squid game",
-    artist: "Joo Won",
-    cover: "/images/Squid.jpg",
-    source: "/music/Squid_game.mp3",
-    url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-    favorited: false,
-  },
+  }
 ];
 
 
