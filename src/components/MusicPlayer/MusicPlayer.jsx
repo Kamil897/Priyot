@@ -10,7 +10,7 @@ const tracks = [
     source: "/music/Stan.mp3",
     url: "https://youtu.be/nGcM8afe0F4",
     favorited: false,
-  }
+  },
   {
     name: "Like Him (feat. Lola Young)",
     artist: "Tyler, The Creator CHROMAKOPIA",
