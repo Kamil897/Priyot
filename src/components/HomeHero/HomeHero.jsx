@@ -18,7 +18,7 @@ const HomeHero = () => {
 
   const handleBallClick = (index) => {
     setBrokenIndex(index);
-    setTimeout(() => setBrokenIndex(null), 2000); // Восстановление через 2 секунды
+    setTimeout(() => setBrokenIndex(null), 2000);
   };
 
   useEffect(() => {
