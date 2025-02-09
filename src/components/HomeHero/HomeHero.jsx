@@ -42,11 +42,13 @@ const HomeHero = () => {
         })
         .addTo(mapRef.current);
 
+      // Определяем границы отображения
       const squareBounds = [
         [41.280, 69.200],
         [41.350, 69.300],
       ];
 
+      // Данные о приютах
       const shelters = [
         {
           coords: [41.112, 69.047],
@@ -82,6 +84,21 @@ const HomeHero = () => {
         },
       ];
 
+      // Создаём кастомную иконку для маркеров
+      const customIcon = L.divIcon({
+        html: `
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="10" r="3"/>
+            <path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8z"/>
+          </svg>
+        `,
+        className: "custom-marker",
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -36],
+      });
+
+      // Добавляем маркеры на карту
       shelters.forEach((shelter) => {
         const [lat, lng] = shelter.coords;
         if (
@@ -90,7 +107,10 @@ const HomeHero = () => {
           lng >= squareBounds[0][1] &&
           lng <= squareBounds[1][1]
         ) {
-          L.marker(shelter.coords).addTo(mapRef.current).bindPopup(shelter.popup).openPopup();
+          L.marker(shelter.coords, { icon: customIcon })
+            .addTo(mapRef.current)
+            .bindPopup(shelter.popup)
+            .openPopup();
         }
       });
     }
