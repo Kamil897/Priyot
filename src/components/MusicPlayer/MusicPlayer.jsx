@@ -7,13 +7,13 @@ const tracks = [
     name: "Stan",
     artist: "Eminem, Dido",
     cover: "/images/Stan.jpg",
-    source: "/music/Stan.mp3",
+    source: "./music/Stan.mp3",
   },
   {
     name: "Like Him (feat. Lola Young)",
     artist: "Tyler, The Creator CHROMAKOPIA",
     cover: "/images/Tyler.jpg",
-    source: "/music/Tyler.mp3",
+    source: "./music/Tyler.mp3",
   },
 ];
 
@@ -130,9 +130,13 @@ const MusicPlayer = ({ isFixed = false }) => {
         <button className="player-controls__item" onClick={prevTrack}>
           <img src="./Shape2-removebg-preview.png" alt="Previous" className="player-controls__icon" />
         </button>
-        <button className="player-controls__item -xl" onClick={playPause}>
-          {isPlaying ? "⏸" : "▶"}
-        </button>
+        <button
+              className="player-controls__item -xl"
+              onClick={playPause}
+              disabled={!currentTrack.source}
+            >
+              {isPlaying ? "⏸" : "▶"}
+            </button>
         <button className="player-controls__item" onClick={nextTrack}>
           <img src="./Shape.png" alt="Next" className="player-controls__icon" />
         </button>
