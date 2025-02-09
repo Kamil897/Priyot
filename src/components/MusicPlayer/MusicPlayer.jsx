@@ -114,11 +114,38 @@ const MusicPlayer = ({ isFixed = false }) => {
         </button>
         <button className="player-controls__item -xl" onClick={playPause}>
           {isPlaying ? (
-            <img src="./pause-icon.png" alt="Pause" className="player-controls__icon" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="player-controls__icon"
+            >
+              <path d="M7 5v14M17 5v14" />
+            </svg>
           ) : (
-            <img src="./play-icon.png" alt="Play" className="player-controls__icon" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="player-controls__icon"
+            >
+              <polygon points="5,3 19,12 5,21" />
+            </svg>
           )}
         </button>
+
         <button className="player-controls__item" onClick={nextTrack}>
           <img src="./Shape.png" alt="Next" className="player-controls__icon" />
         </button>
