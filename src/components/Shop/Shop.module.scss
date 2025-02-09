@@ -68,29 +68,75 @@
   margin-top: 8px;
 }
 
+
+
+@keyframes softPulse {
+  0% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(255, 204, 51, 0.4);
+  }
+  50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 204, 51, 0.6);
+  }
+  100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(255, 204, 51, 0.4);
+  }
+}
+
+@keyframes slightRotate {
+  0% {
+      transform: rotate(0deg);
+  }
+  50% {
+      transform: rotate(2deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
+
+@keyframes bounceUp {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-5px);
+  }
+  100% {
+      transform: translateY(0);
+  }
+}
+
 .buyButton {
-  background: linear-gradient(145deg, #ffd700, #ffcc33);
-  color: black;
+  background: linear-gradient(135deg, #ffcc33, #ff9900);
   border: none;
-  border-radius: 12px;
-  padding: 14px 28px;
+  border-radius: 30px;
+  padding: 16px 32px;
   font-size: 18px;
   font-weight: bold;
+  text-transform: uppercase;
+  color: white;
   cursor: pointer;
-  margin-top: 14px;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  animation: softPulse 2s infinite ease-in-out;
+}
 
-  &:hover {
-    background: linear-gradient(145deg, #ffcc33, #ffd700);
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(255, 204, 0, 0.5);
-  }
+.buyButton:hover {
+  animation: slightRotate 0.4s ease-in-out;
+}
 
-  &:disabled {
-    background: #666;
-    color: #ccc;
-    cursor: not-allowed;
-  }
+.buyButton:active {
+  transform: translateY(-5px);
+  transition: transform 0.1s ease-in-out;
+}
+
+.buyButton:disabled {
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .purchaseForm {
